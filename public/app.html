@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpecCheck — check an order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;650&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23161e30'/%3E%3Cpath d='M5 12h14M5 7h9M5 17h6' stroke='%23f4efe6' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="side">
+    <a class="brand" href="/" style="margin-bottom:18px">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" stroke="#161e30" stroke-width="1.4"/>
+        <path d="M6 8.5h12M6 12h8M6 15.5h11" stroke="#161e30" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M15.5 12h2" stroke="#a8342a" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">SpecCheck</span>
+    </a>
+    <h2>Order documents</h2>
+    <p class="muted">PDF · XLSX · CSV · pasted text</p>
+
+    <div class="side-sec" id="slots"></div>
+
+    <div class="side-sec">
+      <button class="btn btn-sm" id="runBtn" style="width:100%">Compare documents</button>
+      <button class="linkbtn" id="demoBtn" style="margin-top:12px">Load demo order</button>
+      <button class="linkbtn" id="clearBtn" style="margin-top:6px;display:block">Clear everything</button>
+    </div>
+
+    <div class="side-sec">
+      <h3>Model</h3>
+      <p class="muted" id="modelLine">checking…</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-head">
+      <div>
+        <h1>Check an order</h1>
+        <div class="steps-line" id="stepsLine">
+          <span data-step="extract">Extract</span><span class="sep">/</span>
+          <span data-step="compare">Compare</span><span class="sep">/</span>
+          <span data-step="flag">Flag</span><span class="sep">/</span>
+          <span data-step="decide">Decide</span>
+        </div>
+      </div>
+      <div class="head-actions">
+        <button class="btn btn-ghost btn-sm" id="sendAgentBtn" disabled title="Saves the report as a PDF and opens the agent chat">Send to Agent</button>
+        <button class="btn btn-ghost btn-sm" id="exportBtn" disabled>Export report</button>
+      </div>
+    </div>
+
+    <div id="notice"></div>
+
+    <section id="result">
+      <div class="empty">
+        <h2>Three documents, one order.</h2>
+        <p>Add the tech pack, the purchase order and the factory sheet — or load the demo order to see a real comparison with planted errors. SpecCheck reads, compares and flags. You decide what happens next.</p>
+      </div>
+    </section>
+
+    <div class="foot-line">
+      <span>AI reads and compares. A human makes the final call.</span>
+      <span>SpecCheck · Team Blaze Protocol</span>
+    </div>
+  </main>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+PURCHASE ORDER — PO-88214
+Buyer: Northfield Workwear Ltd.
+Supplier: Golden Loom Garments Co., Ltd.
+Order date: 06 Nov 2026  |  Incoterm: FOB Shenzhen
+
+STYLE DETAILS
+Style name: A-1024 Field Overshirt
+Colour: Navy
+Fabric: Cotton twill, 12 oz
+Composition: 100% Cotton
+Quantity: 1,200 pcs
+Unit price: USD 14.80
+Ship date: 15 Dec 2027
+Destination: Felixstowe, UK
+
+SIZE BREAKDOWN
+S: 300 pcs
+M: 600 pcs
+L: 300 pcs
+
+APPROVED MEASUREMENTS (cm)
+Size  | Chest | Body length
+S     | 50    | 74
+M     | 52    | 76
+L     | 54    | 78
+
+REQUIREMENTS
+Care label: Machine wash 30C, do not bleach, warm iron, do not tumble dry
+Trims: corozo buttons as per tech pack, woven main label, size label
+All goods to carry country of origin label.

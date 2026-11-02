@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "fallback": true,
+  "style": "A-1024 Field Overshirt",
+  "ai": false,
+  "ai_error": "Demo fallback: pre-computed from the sample documents (no model call was made).",
+  "model": "precomputed",
+  "counts": { "total": 8, "high": 6, "medium": 2, "low": 0, "dismissed": 0 },
+  "flags": [
+    {
+      "id": "c1", "kind": "mismatch", "field": "quantity", "label": "Quantity", "priority": "High",
+      "warning": "The order is for 1,200 pieces but the factory sheet plans 1,000. Production is 200 pieces short of what the buyer is paying for.",
+      "reason": "Quantity conflict changes the whole cutting plan.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": 1200, "quote": "Quantity: 1200 pcs", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": 1200, "quote": "Quantity: 1,200 pcs", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": 1000, "quote": "Quantity: 1000 pcs", "missing": false }
+      ]
+    },
+    {
+      "id": "c2", "kind": "mismatch", "field": "ship_date", "label": "Ship date", "priority": "High",
+      "warning": "Buyer documents say 15 Dec 2027, the factory sheet says 20 Dec 2027. That is five days late against the PO and will miss the booking.",
+      "reason": "Ship date drives penalties and freight booking.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": "15 Dec 2027", "quote": "Ship date: 15 Dec 2027", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": "15 Dec 2027", "quote": "Ship date: 15 Dec 2027", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": "20 Dec 2027", "quote": "Ship date: 20 Dec 2027", "missing": false }
+      ]
+    },
+    {
+      "id": "c3", "kind": "mismatch", "field": "size_M chest_cm", "label": "M · chest cm", "priority": "High",
+      "warning": "Size M chest is 52 cm on both buyer documents but 50 cm on the factory sheet. Every M garment will be 2 cm too small.",
+      "reason": "Measurement conflict changes fit across 600 pieces.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": 52, "quote": "M     | 52    | 76", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": 52, "quote": "M     | 52    | 76", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": 50, "quote": "M     | 50    | 76", "missing": false }
+      ]
+    },
+    {
+      "id": "c4", "kind": "mismatch", "field": "size_S chest_cm", "label": "S · chest cm", "priority": "High",
+      "warning": "Size S chest is 50 cm on the buyer documents and 48 cm on the factory sheet. The whole size run is being cut 2 cm narrower.",
+      "reason": "Same grading error as size M, so it affects the full run.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": 50, "quote": "S     | 50    | 74", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": 50, "quote": "S     | 50    | 74", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": 48, "quote": "S     | 48    | 74", "missing": false }
+      ]
+    },
+    {
+      "id": "c5", "kind": "mismatch", "field": "size_L chest_cm", "label": "L · chest cm", "priority": "High",
+      "warning": "Size L chest is 54 cm on the buyer documents and 52 cm on the factory sheet. Confirm the grading before cutting starts.",
+      "reason": "Measurement conflict.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": 54, "quote": "L     | 54    | 78", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": 54, "quote": "L     | 54    | 78", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": 52, "quote": "L     | 52    | 78", "missing": false }
+      ]
+    },
+    {
+      "id": "c6", "kind": "mismatch", "field": "color", "label": "Colour", "priority": "High",
+      "warning": "Buyer documents specify Navy, the factory sheet says Blue. Navy and Blue are different shades on a fabric card and the dye lot cannot be changed after cutting.",
+      "reason": "Colour naming difference with a real dye consequence.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": "Navy", "quote": "Colour: Navy", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": "Navy", "quote": "Colour: Navy", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": "Blue", "quote": "Colour: Blue", "missing": false }
+      ]
+    },
+    {
+      "id": "c7", "kind": "mismatch", "field": "composition", "label": "Composition", "priority": "Medium",
+      "warning": "The factory sheet adds 5% elastane to a 100% cotton order. That changes shrinkage, hand feel and the fibre content printed on the care label.",
+      "reason": "Fibre change is significant but may be a mill substitution a merchandiser can resolve.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": "100% cotton", "quote": "Composition: 100% cotton", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": "100% Cotton", "quote": "Composition: 100% Cotton", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": "95% cotton, 5% elastane", "quote": "Composition: 95% cotton, 5% elastane", "missing": false }
+      ]
+    },
+    {
+      "id": "c8", "kind": "gap", "field": "care_label", "label": "Care label", "priority": "Medium",
+      "warning": "The tech pack and purchase order both require a printed care label; the factory sheet lists it as not stocked and not ordered. Without it the shipment fails labelling compliance.",
+      "reason": "Missing care label blocks export and is a compliance gap.",
+      "values": [
+        { "doc": "techpack", "document": "Tech pack", "value": "Machine wash 30C, do not bleach, warm iron, do not tumble dry", "quote": "Care label: Machine wash 30C, do not bleach, warm iron, do not tumble dry", "missing": false },
+        { "doc": "purchase_order", "document": "Purchase order", "value": "Machine wash 30C, do not bleach, warm iron, do not tumble dry", "quote": "Care label: Machine wash 30C, do not bleach, warm iron, do not tumble dry", "missing": false },
+        { "doc": "factory_sheet", "document": "Factory sheet", "value": null, "quote": "Care label: not stocked, not ordered", "missing": true }
+      ]
+    }
+  ]
+}

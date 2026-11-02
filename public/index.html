@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpecCheck — a spell-checker for clothing orders</title>
+<meta name="description" content="SpecCheck compares a tech pack, purchase order and factory sheet, and flags the conflicts that cause wrong garments, rework and late shipments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;650&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23161e30'/%3E%3Cpath d='M5 12h14M5 7h9M5 17h6' stroke='%23f4efe6' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" stroke="#161e30" stroke-width="1.4"/>
+        <path d="M6 8.5h12M6 12h8M6 15.5h11" stroke="#161e30" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M15.5 12h2" stroke="#a8342a" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">SpecCheck</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#problem">The problem</a>
+      <a href="#cost">The cost</a>
+      <a href="#how">How it works</a>
+      <a href="/app">Open the app</a>
+    </nav>
+    <a class="btn btn-sm" href="/app">Check an order</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1 · hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>A <span class="nw">spell-checker</span> for <em>clothing orders.</em></h1>
+        <p class="hero-sub">SpecCheck catches conflicting instructions before they become costly mistakes.</p>
+        <div class="hero-cta">
+          <a class="btn" href="/app">
+            Check an order
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="hero-note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#6d7488" stroke-width="1.4"/><path d="M12 8v4.5M12 16h.01" stroke="#6d7488" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Three documents, one garment. AI reads them; you make the call.
+        </p>
+      </div>
+
+      <div class="docs" aria-label="Three documents disagreeing on the same order">
+        <article class="doc">
+          <div class="doc-head"><span class="doc-title">Tech pack</span><span class="doc-sub">v3.1</span></div>
+          <div class="doc-rows">
+            <div class="doc-row"><span class="k">Colour</span><span class="v">Navy</span></div>
+            <div class="doc-row"><span class="k">Chest M</span><span class="v">52 cm</span></div>
+            <div class="doc-row"><span class="k">Ship</span><span class="v">15 Dec</span></div>
+          </div>
+        </article>
+        <article class="doc">
+          <div class="doc-head"><span class="doc-title">Purchase order</span><span class="doc-sub">PO-88214</span></div>
+          <div class="doc-rows">
+            <div class="doc-row"><span class="k">Colour</span><span class="v">Navy</span></div>
+            <div class="doc-row"><span class="k">Chest M</span><span class="v">52 cm</span></div>
+            <div class="doc-row"><span class="k">Ship</span><span class="v">15 Dec</span></div>
+          </div>
+        </article>
+        <article class="doc">
+          <div class="doc-head"><span class="doc-title">Factory sheet</span><span class="doc-sub">GL-2291</span></div>
+          <div class="doc-rows">
+            <div class="doc-row"><span class="k">Colour</span><span class="v bad">Blue</span></div>
+            <div class="doc-row"><span class="k">Chest M</span><span class="v bad">50 cm</span></div>
+            <div class="doc-row"><span class="k">Ship</span><span class="v bad">20 Dec</span></div>
+          </div>
+          <p class="doc-flag">3 values disagree with the buyer</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · problem -->
+  <section class="section" id="problem">
+    <div class="wrap two-col">
+      <h2>One order, three answers.</h2>
+      <div>
+        <p class="section-lead">The tech pack says how to make the garment, the purchase order says what the buyer bought, and the factory sheet says what the line will actually cut. Nobody owns the space between them.</p>
+        <p class="section-lead">So someone opens all three, scrolls, and compares by eye — at the end of a long day, on the fourth order of the morning. The numbers that disagree are the ones nobody is looking for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · cost -->
+  <section class="section" id="cost">
+    <div class="wrap">
+      <h2>Small mismatch, big cost.</h2>
+      <div class="chain" role="list" aria-label="Failure chain">
+        <span class="chain-step" role="listitem">Mismatch</span><span class="chain-arrow" aria-hidden="true">→</span>
+        <span class="chain-step" role="listitem">Wrong garment</span><span class="chain-arrow" aria-hidden="true">→</span>
+        <span class="chain-step" role="listitem">Rework</span><span class="chain-arrow" aria-hidden="true">→</span>
+        <span class="chain-step" role="listitem">Wasted fabric</span><span class="chain-arrow" aria-hidden="true">→</span>
+        <span class="chain-step" role="listitem">Late shipment</span>
+      </div>
+
+      <div class="ledger">
+        <div class="ledger-row">
+          <div>
+            <div class="ledger-num">50–80%</div>
+            <p class="ledger-src">of a garment's cost is fabric — so a cut made to the wrong spec is money already spent. Source: <a href="https://apparelresources.com/" rel="noopener nofollow">Apparel Resources</a>.</p>
+          </div>
+          <span class="chip">Fabric share of cost</span>
+        </div>
+        <div class="ledger-row">
+          <div>
+            <div class="ledger-num">10–15%</div>
+            <p class="ledger-src">cutting loss reported in a 2025 apparel study. Source: <em>Tekstilna Industrija</em>, 2025.</p>
+          </div>
+          <span class="chip">Cutting loss</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · how -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <h2>How SpecCheck works.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">01
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Upload</h3>
+          <p>Drop the tech pack, the purchase order and the factory sheet — PDF, spreadsheet, or pasted text.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">02
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13" stroke-width="1.5" stroke-linecap="round"/><circle cx="18.5" cy="11.5" r="2.5" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Extract</h3>
+          <p>Each document is read into the same fields: colour, composition, quantity, ship date, measurements, care label, trims. Blank stays blank.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">03
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h7M4 17h7M20 7h-4M20 17h-4M13 4v16" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Compare</h3>
+          <p>Values are normalised and compared field by field in code — units, dates, formatting — then the model judges what is a real difference.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">04
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3v18M6 4h11l-2 4 2 4H6" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Flag</h3>
+          <p>Conflicts and gaps come back ranked High, Medium, Low, with the value from each document and the line it came from.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">05
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Decide</h3>
+          <p>Fix needed, ignore, or ask the supplier. You record the call and export the report. Nothing is approved for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · product preview -->
+  <section class="section">
+    <div class="wrap">
+      <h2>What an order looks like when it disagrees.</h2>
+      <div class="preview">
+        <div class="preview-bar">
+          <span class="preview-title">Order A-1024 · 3 issues found</span>
+          <span class="preview-count">High 2 · Medium 1</span>
+        </div>
+        <div class="flag-list">
+          <div class="flag-row">
+            <div><span class="tag tag-high">High</span></div>
+            <div>
+              <div class="field">Chest · M</div>
+              <div class="vals"><span class="val-pill">Tech pack 52</span><span class="val-pill">PO 52</span><span class="val-pill bad">Factory 50</span></div>
+            </div>
+            <p class="warn">Every size M garment will be cut 2 cm narrow. Confirm the grading before the spread is laid.</p>
+          </div>
+          <div class="flag-row">
+            <div><span class="tag tag-high">High</span></div>
+            <div>
+              <div class="field">Ship date</div>
+              <div class="vals"><span class="val-pill">Tech pack 15 Dec</span><span class="val-pill">PO 15 Dec</span><span class="val-pill bad">Factory 20 Dec</span></div>
+            </div>
+            <p class="warn">The factory plan is five days after the buyer's date — that misses the booking.</p>
+          </div>
+          <div class="flag-row">
+            <div><span class="tag tag-med">Medium</span></div>
+            <div>
+              <div class="field">Care label</div>
+              <div class="vals"><span class="val-pill">Tech pack yes</span><span class="val-pill">PO yes</span><span class="val-pill bad">Factory none</span></div>
+            </div>
+            <p class="warn">Required on both buyer documents; the factory sheet lists it as not stocked and not ordered.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · glossary -->
+  <section class="section">
+    <div class="wrap">
+      <h2>The words on the documents.</h2>
+      <dl class="gloss">
+        <div><dt>Tech pack</dt><dd>The construction file: measurements, fabric, trims, labelling, how the garment is built.</dd></div>
+        <div><dt>Purchase order</dt><dd>The commercial instruction from the buyer: quantity, price, colour, ship date, destination.</dd></div>
+        <div><dt>Factory sheet</dt><dd>What production plans to cut and sew, written by the factory from the two documents above.</dd></div>
+        <div><dt>Merchandiser</dt><dd>The person who holds the order together between buyer and factory, and owns the fix.</dd></div>
+        <div><dt>Spec</dt><dd>Any single instruction that can be checked: a measurement, a colour, a fibre content, a date.</dd></div>
+        <div><dt>Flag</dt><dd>A place where two documents cannot both be right — or where one is silent and should not be.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 7 · trust -->
+  <section class="band">
+    <div class="wrap">
+      <p>AI reads and compares. A human always makes the final call.</p>
+      <p class="small">SpecCheck never approves an order, never edits a document and never contacts a supplier. It shows you where the three disagree and keeps a record of the decision you made.</p>
+    </div>
+  </section>
+
+  <!-- 8 · final -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Check the next order before the cutting starts.</h2>
+      <div class="hero-cta">
+        <a class="btn" href="/app">Check an order</a>
+        <a class="btn btn-ghost" href="/app?demo=1">Load the demo order</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>SpecCheck · Team Blaze Protocol · AIVenture Innovation, Track A</span>
+    <span>AI reads and compares. A human decides.</span>
+  </div>
+</footer>
+
+<script>
+  // one authored reveal: sections settle as they enter, nothing else moves
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  document.querySelectorAll('.section h2, .section-lead, .steps, .ledger, .preview, .gloss, .band p, .final h2')
+    .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
+</script>
+</body>
+</html>

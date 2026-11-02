@@ -1,0 +1,28 @@
+FACTORY PRODUCTION SHEET — GOLDEN LOOM GARMENTS
+Cutting order: GL-2291
+Buyer: Northfield Workwear Ltd.  |  Style: A-1024
+Prepared by: Production planning  |  Date: 20 Nov 2026
+
+ORDER
+Style name: A-1024 Field Overshirt
+Colour: Blue
+Fabric: Cotton twill 12 oz
+Composition: 95% cotton, 5% elastane
+Quantity: 1000 pcs
+Ship date: 20 Dec 2027
+
+SIZE CHART (cm, flat)
+Size  | Chest | Body length | Shoulder | Sleeve
+S     | 48    | 74          | 46       | 62
+M     | 50    | 76          | 48       | 63
+L     | 52    | 78          | 50       | 64
+
+TRIMS STOCK CHECK
+Corozo buttons 18L: 7,400 pcs in store — OK
+Main label: 1,100 pcs — short by 100, reordering
+Size label: 1,250 pcs — OK
+Care label: not stocked, not ordered
+
+NOTES
+Fabric lot 24-B to be used. Elastane added for hand feel per mill advice.
+Production start: 02 Dec 2027. Cutting capacity 120 pcs/day.
